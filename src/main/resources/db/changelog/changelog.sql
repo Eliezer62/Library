@@ -37,3 +37,11 @@ CREATE TABLE IF NOT EXISTS authors(
 ) ENGINE = InnoDB;
 
 -- rollback DROP TABLE authors;
+
+-- changeset eliezer:4
+ALTER TABLE books ADD COLUMN author_id BIGINT;
+-- rollback ALTER TABLE books DROP COLUMN author_id; 
+
+-- changeset eliezer:5
+ALTER TABLE books ADD CONSTRAINT fk_books_authors FOREIGN KEY(author_id) REFERENCES authors(id) ON DELETE SET NULL;
+-- rollback ALTER TABLE books DROP CONSTRAINT fk_books_authors;
