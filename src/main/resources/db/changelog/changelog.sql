@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS copies(
 -- changeset eliezer:3
 CREATE TABLE IF NOT EXISTS authors(
     id BIGINT NOT NULL AUTO_INCREMENT,
-    name NOT NULL VARCHAR(255),
+    name VARCHAR(255) NOT NULL ,
     bibliography TEXT,
     nationality VARCHAR(255),
     CONSTRAINT pk_authors PRIMARY KEY(id)
