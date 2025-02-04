@@ -131,7 +131,7 @@
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <configuration>
                     <propertyFile>
-                        src/main/resources/db/liquibase.yaml
+                        src/main/resources/db/liquibase.yml
                     </propertyFile>
 					<changeLogFile>src/main/resources/db/changelog/changelog.sql</changeLogFile>
                 </configuration>
