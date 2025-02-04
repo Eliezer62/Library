@@ -24,7 +24,7 @@ import lombok.Setter;
 @Setter
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "isbn", columnDefinition = "VARCHAR(13)", length = 13)
@@ -45,6 +45,6 @@ public class Book {
     @Column(name = "synopsis", columnDefinition = "TEXT")
     private String synopsis;
 
-    @OneToMany(mappedBy = "copy", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Copy> copies;
 }

@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class Author {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", length = 255, columnDefinition = "VARCHAR(255)")

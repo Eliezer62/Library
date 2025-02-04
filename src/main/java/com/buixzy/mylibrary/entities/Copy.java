@@ -24,7 +24,7 @@ import jakarta.persistence.GenerationType;
 @Setter
 public class Copy {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "state")
