@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,4 +39,19 @@ public class Copy {
     @ManyToOne
     @JsonIgnore
     private Book book;
+
+    public Boolean isAvailable()
+    {
+        return this.available;
+    }
+
+
+    public Boolean isLoanable()
+    {
+        if(state == StateCopies.DESTROYED || !available)
+            return false;
+        
+        else
+            return true;
+    }
 }
