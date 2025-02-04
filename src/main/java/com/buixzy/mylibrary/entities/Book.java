@@ -1,12 +1,15 @@
 package com.buixzy.mylibrary.entities;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,4 +44,7 @@ public class Book {
 
     @Column(name = "synopsis", columnDefinition = "TEXT")
     private String synopsis;
+
+    @OneToMany(mappedBy = "copy", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Copy> copies;
 }
