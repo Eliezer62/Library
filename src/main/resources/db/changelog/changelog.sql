@@ -26,3 +26,14 @@ CREATE TABLE IF NOT EXISTS copies(
 ) ENGINE = InnoDB;
 
 -- rollback DROP TABLE copies;
+
+-- changeset eliezer:3
+CREATE TABLE IF NOT EXISTS authors(
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    name NOT NULL VARCHAR(255),
+    bibliography TEXT,
+    nationality VARCHAR(255),
+    CONSTRAINT pk_authors PRIMARY KEY(id)
+) ENGINE = InnoDB;
+
+-- rollback DROP TABLE authors;
