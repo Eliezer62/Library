@@ -126,6 +126,16 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <configuration>
+                    <propertyFile>
+                        src/main/resources/db/liquibase.yaml
+                    </propertyFile>
+					<changeLogFile>src/main/resources/db/changelog/changelog.sql</changeLogFile>
+                </configuration>
+            </plugin>
 		</plugins>
 	</build>
 
