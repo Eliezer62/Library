@@ -45,3 +45,7 @@ ALTER TABLE books ADD COLUMN author_id BIGINT;
 -- changeset eliezer:5
 ALTER TABLE books ADD CONSTRAINT fk_books_authors FOREIGN KEY(author_id) REFERENCES authors(id) ON DELETE SET NULL;
 -- rollback ALTER TABLE books DROP CONSTRAINT fk_books_authors;
+
+-- changeset eliezer:6
+ALTER TABLE books ADD COLUMN name VARCHAR(255) NOT NULL;
+-- rollback ALTER TABLE books DROP COLUMN name;
