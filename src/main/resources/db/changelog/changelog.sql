@@ -49,3 +49,22 @@ ALTER TABLE books ADD CONSTRAINT fk_books_authors FOREIGN KEY(author_id) REFEREN
 -- changeset eliezer:6
 ALTER TABLE books ADD COLUMN name VARCHAR(255) NOT NULL;
 -- rollback ALTER TABLE books DROP COLUMN name;
+
+-- changeset eliezer:7
+CREATE TABLE IF NOT EXISTS users (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    cpf CHAR(11) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'library', 'user') DEFAULT 'user',
+    card_id CHAR(13) NOT NULL,
+    status ENUM('active', 'disabled', 'locked', 'expired') NOT NULL DEFAULT 'active',
+    registrationDate DATE,
+    keycloak_id CHAR(255) NOT NULL,
+    CONSTRAINT pk_users PRIMARY KEY(id),
+    CONSTRAINT uc_users_cpf UNIQUE(cpf),
+    CONSTRAINT uc_users_email UNIQUE(email),
+    CONSTRAINT uc_users_card_id UNIQUE(card_id),
+    CONSTRAINT uc_users_keycloak_id UNIQUE(keycloak_id)
+) ENGINE = InnoDB;
+-- rollback DROP TABLE users;
