@@ -36,6 +36,9 @@ public class User {
     @Column(name = "email", unique = true, columnDefinition = "VARCHAR(255)")
     private String email;
 
+    @Column(name = "password", columnDefinition = "VARCHAR(255)")
+    private String password;
+
     @Column(name = "cpf", unique = true, columnDefinition = "CHAR(11)")
     private String cpf;
 
