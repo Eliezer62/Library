@@ -72,3 +72,8 @@ CREATE TABLE IF NOT EXISTS users (
 -- changeset elizer:8
 ALTER TABLE users ADD COLUMN password VARCHAR(255) NOT NULL;
 -- rollback ALTER TABLE users DROP COLUMN password;
+
+-- changeset eliezer:9
+ALTER TABLE users ADD COLUMN registration_date DATE;
+ALTER TABLE users DROP COLUMN registrationDate;
+-- rollback ALTER TABLE users DROP COLUMN registration_date;

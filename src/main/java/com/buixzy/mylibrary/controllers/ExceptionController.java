@@ -11,6 +11,7 @@ import com.buixzy.mylibrary.dtos.ErrorDTO;
 import com.buixzy.mylibrary.exceptions.AuthorNotFoundException;
 import com.buixzy.mylibrary.exceptions.BookNotFoundException;
 import com.buixzy.mylibrary.exceptions.CopyNotFoundException;
+import com.buixzy.mylibrary.exceptions.UserNotFoundException;
 
 @ControllerAdvice
 public class ExceptionController {
@@ -33,5 +34,11 @@ public class ExceptionController {
     {
         ErrorDTO dto = new ErrorDTO(404, new Timestamp(System.currentTimeMillis()), "Copia não encontrada");
         return new ResponseEntity<>(dto, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorDTO> handlerUserNotFound(UserNotFoundException e) {
+        return new ResponseEntity<>(new ErrorDTO(404, new Timestamp(System.currentTimeMillis()), "Usuário não encontrado"), HttpStatus.NOT_FOUND);
+
     }
 }
