@@ -77,3 +77,32 @@ ALTER TABLE users ADD COLUMN password VARCHAR(255) NOT NULL;
 ALTER TABLE users ADD COLUMN registration_date DATE;
 ALTER TABLE users DROP COLUMN registrationDate;
 -- rollback ALTER TABLE users DROP COLUMN registration_date;
+
+-- changeset eliezer:10
+CREATE TABLE address (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    street VARCHAR(255) NOT NULL,
+    state VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    zip CHAR(8) NOT NULL,
+    apartament CHAR(8) NOT NULL,
+    country VARCHAR(255) NOT NULL DEFAULT 'Brasil',
+    identification VARCHAR(255),
+    user_id BIGINT NOT NULL,
+    CONSTRAINT pk_address PRIMARY KEY(id),
+    CONSTRAINT fk_address_user FOREIGN KEY(user_id) REFERENCES users(id)
+) ENGINE=InnoDB;
+-- rollback DROP TABLE address;
+
+-- changeset eliezer:11
+CREATE TABLE phones (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    identification VARCHAR(255),
+    ddi CHAR(4) NOT NULL DEFAULT '+55',
+    ddd CHAR(3) NOT NULL,
+    number VARCHAR(11) NOT NULL,
+    user_id BIGINT NOT NULL,
+    CONSTRAINT pk_phones PRIMARY KEY(id),
+    CONSTRAINT fk_phone_user FOREIGN KEY(user_id) REFERENCES users(id)
+);
+-- rollback DROP TABLE phones;

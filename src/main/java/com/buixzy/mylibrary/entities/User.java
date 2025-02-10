@@ -1,18 +1,23 @@
 package com.buixzy.mylibrary.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import com.buixzy.mylibrary.converters.UserRoleConverter;
 import com.buixzy.mylibrary.converters.UserStatusConverter;
+import com.buixzy.mylibrary.entities.user.Address;
+import com.buixzy.mylibrary.entities.user.Phone;
 import com.buixzy.mylibrary.enums.UserRole;
 import com.buixzy.mylibrary.enums.UserStatus;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -55,4 +60,10 @@ public class User {
 
     @Column(name = "keycloak_id", unique = true, columnDefinition = "CHAR(255)")
     private String keycloakId;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Address> addresses;
+
+    @OneToMany(mappedBy = "user", orphanRemoval = true, cascade = CascadeType.ALL)
+    private List<Phone> phones;
 }
