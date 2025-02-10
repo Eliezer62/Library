@@ -106,3 +106,38 @@ CREATE TABLE phones (
     CONSTRAINT fk_phone_user FOREIGN KEY(user_id) REFERENCES users(id)
 );
 -- rollback DROP TABLE phones;
+
+-- changeset eliezer:12
+CREATE TABLE loans (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    loan_date DATE NOT NULL,
+    due_date DATE NOT NULL,
+    return_date DATE,
+    status ENUM('active', 'returned', 'overdue') NOT NULL DEFAULT 'active',
+    renew BOOLEAN DEFAULT false,
+    notes TEXT,
+    user_id BIGINT NOT NULL,
+    copy_id BIGINT NOT NULL,
+    CONSTRAINT pk_loan PRIMARY KEY(id),
+    CONSTRAINT fk_loan_user FOREIGN KEY(user_id) REFERENCES users(id),
+    CONSTRAINT fk_loan_copy FOREIGN KEY(copy_id) REFERENCES copies(id)
+) ENGINE=InnoDB;
+-- rollback DROP TABLE loans;
+
+-- changeset eliezer:13
+CREATE TABLE overduefees (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    amount DECIMAL(15,2) NOT NULL,
+    reason VARCHAR(255) NOT NULL,
+    status ENUM('pending', 'paid'),
+    due_date DATE NOT NULL,
+    paid_date DATE,
+    loan_days_overdue DATE NOT NULL,
+    notes TEXT,
+    user_id BIGINT NOT NULL,
+    loan_id BIGINT NOT NULL,
+    CONSTRAINT pk_overduefees PRIMARY KEY(id),
+    CONSTRAINT fk_overduefees_user FOREIGN KEY(user_id) REFERENCES users(id),
+    CONSTRAINT fk_overduefees_loan FOREIGN KEY(loan_id) REFERENCES loans(id),
+    CONSTRAINT chk_overduesfees_amount_positive CHECK (amount > 0.0)
+) ENGINE=InnoDB;
