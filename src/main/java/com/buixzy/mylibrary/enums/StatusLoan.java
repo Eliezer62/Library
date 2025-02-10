@@ -3,7 +3,7 @@ package com.buixzy.mylibrary.enums;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum StatusLoan {
-    ACTIVE("active"), RETURNED("retured"), OVERDUE("overdue");
+    ACTIVE("active"), RETURNED("returned"), OVERDUE("overdue");
     
     private String statusName;
 
