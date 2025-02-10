@@ -141,3 +141,4 @@ CREATE TABLE overduefees (
     CONSTRAINT fk_overduefees_loan FOREIGN KEY(loan_id) REFERENCES loans(id),
     CONSTRAINT chk_overduesfees_amount_positive CHECK (amount > 0.0)
 ) ENGINE=InnoDB;
+-- rollback DROP TABLE overduefees;
