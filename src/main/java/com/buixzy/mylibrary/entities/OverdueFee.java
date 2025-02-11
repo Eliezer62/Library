@@ -1,10 +1,13 @@
 package com.buixzy.mylibrary.entities;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.buixzy.mylibrary.converters.OverdueStatusConverter;
 import com.buixzy.mylibrary.enums.OverdueStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
@@ -51,4 +54,25 @@ public class OverdueFee {
     @ManyToOne
     @JsonIgnore
     private Loan loan;
+
+    @JsonProperty("user")
+    public Map<String, Object> userJson() {
+        return new HashMap<>(Map.of(
+            "id", user.getId(),
+            "name", user.getName(),
+            "cpf", user.getCpf(),
+            "cardId", user.getCardId()
+        ));
+    }
+
+    @JsonProperty("loan")
+    public Map<String, Object> loanJson() {
+        return new HashMap<>(Map.of(
+            "id", loan.getId(),
+            "loanDate", loan.getLoanDate(),
+            "dueDate", loan.getDueDate(),
+            "returnDate", loan.getReturnDate(),
+            "copyCode", loan.getCopy().getCode()
+        ));
+    }
 }
