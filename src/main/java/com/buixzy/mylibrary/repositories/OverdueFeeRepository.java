@@ -13,4 +13,6 @@ public interface OverdueFeeRepository extends JpaRepository<OverdueFee, Long> {
     @Query("SELECT o FROM OverdueFee o LEFT JOIN User u WHERE u.id = ?1")
     List<OverdueFee> findAllByUserId(Long id);
 
+    @Query("SELECT o FROM OverdueFee o LEFT JOIN User u WHERE u.id = ?1 AND o.status = 'pending'")
+    List<OverdueFee> findAllNotPaidByUserId(Long id);
 }

@@ -40,6 +40,10 @@ public class OverdueFeeService {
         return rep.findAllByUserId(id);
     }
 
+    public List<OverdueFee> findAllNotPaidByUserId(Long id) {
+        return rep.findAllNotPaidByUserId(id);
+    }
+
     public OverdueFee findById(Long id) {
         return rep.findById(id).orElseThrow(OverdueFeeNotFoundException::new);
     }
